@@ -1,6 +1,7 @@
 param baseName string
 param env string = 'dev'
 param location string = resourceGroup().location
+param tag string = baseName
 
 
 var adbwsmngresid = '${subscription().id}/resourceGroups/${resourceGroup().name}-mng'
@@ -18,6 +19,7 @@ module adb 'bmain-modules/adbws.bicep'={
     adbmngresourceid: adbwsmngresid
     locationshortname: locationshortstring
     lawid: law.outputs.lawid
+    tag: tag
   }
 }
 
@@ -28,6 +30,7 @@ module uami 'bmain-modules/accon.bicep' = {
     env: env
     location: location
     locationshortname: locationshortstring
+    tag: tag
   }
 }
 
@@ -40,6 +43,7 @@ module dlg2 'bmain-modules/dlg2.bicep'={
     location: location
     uamipid: uami.outputs.adbacpid
     lawid: law.outputs.lawid
+    tag: tag
   }
 }
 
@@ -53,5 +57,6 @@ module law 'bmain-modules/law.bicep'={
     env: env
     location: location
     locationshortname: locationshortstring
+    tag: tag
   }
 }
