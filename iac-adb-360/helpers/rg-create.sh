@@ -1,11 +1,11 @@
 #!/bin/bash
 
 solutionname='adb360'
-location='westus2'
-subscriptionid='<subscriptionid>'
+location='eastus'
+subscriptionid='6ec58834-9eef-44bf-ab25-c10c6946c49f'
 serviceprincipalname='devops-sc'
 adbinteractprincipalname='adb360-sp'
-locationshortname='wus2'
+locationshortname='eus'
 
 month=$(date -d "$D" '+%m')
 day=$(date -d "$D" '+%d')
@@ -27,14 +27,14 @@ erg=$(az group list --query "[?name=='$rgDev'].name" -o tsv)
 if [ -z "$erg" ] 
     then 
         echo 'resourcegroup does not exist, create it'
-        az group create -n $rgDev -l $location
+        az group create -n $rgDev -l $location --tags CreatedBy="Clayton Holderfield"
         az role assignment create --role 'Contributor' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgDev"
         az role assignment create --role 'Contributor' --assignee $adbspoid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgDev"
         az role assignment create --role 'User Access Administrator' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgDev"
     else
         echo 'resourcegroup exists, delete and recreate it'
         az group delete -n $rgDev -y
-        az group create -n $rgDev -l $location
+        az group create -n $rgDev -l $location --tags CreatedBy="Clayton Holderfield"
         az role assignment create --role 'Contributor' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgDev"
         az role assignment create --role 'Contributor' --assignee $adbspoid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgDev"
         az role assignment create --role 'User Access Administrator' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgDev"
@@ -44,14 +44,14 @@ erg=$(az group list --query "[?name=='$rgPrd'].name" -o tsv)
 if [ -z "$erg" ] 
     then 
         echo 'resourcegroup does not exist, create it'
-        az group create -n $rgPrd -l $location
+        az group create -n $rgPrd -l $location --tags CreatedBy="Clayton Holderfield"
         az role assignment create --role 'Contributor' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgPrd"
         az role assignment create --role 'Contributor' --assignee $adbspoid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgPrd"
         az role assignment create --role 'User Access Administrator' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgPrd"
     else
         echo 'resourcegroup exists, delete and recreate it'
         az group delete -n $rgPrd -y
-        az group create -n $rgPrd -l $location
+        az group create -n $rgPrd -l $location --tags CreatedBy="Clayton Holderfield"
         az role assignment create --role 'Contributor' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgPrd"
         az role assignment create --role 'Contributor' --assignee $adbspoid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgPrd"
         az role assignment create --role 'User Access Administrator' --assignee $serviceprincipaloid --scope "/subscriptions/$subscriptionid/resourceGroups/$rgPrd"

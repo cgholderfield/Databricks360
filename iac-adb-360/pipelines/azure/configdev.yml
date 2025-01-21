@@ -1,6 +1,6 @@
 variables:
-  baseName: adb3600614
+  baseName: adb3600121
   env: dev
-  resourcegroup: rg-wus3-$(baseName)-$(env)
-  location: westus3
+  resourcegroup: rg-eus-$(baseName)-$(env)
+  location: eastus
 
