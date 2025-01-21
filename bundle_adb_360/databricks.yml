@@ -7,7 +7,7 @@ include:
   - resources/*.yml
 
 run_as:
-  service_principal_name: 116e5b66-7909-4b64-94d7-9995b4269a29
+  service_principal_name: be4ed975-2601-4db6-957a-e81b57fd9093
 
 
 variables:
@@ -22,7 +22,7 @@ variables:
     default: https://adb-3391121860216189.9.azuredatabricks.net/
   username:
     description: adb360-sp uid
-    default: 116e5b66-7909-4b64-94d7-9995b4269a29
+    default: be4ed975-2601-4db6-957a-e81b57fd9093
   bronzestorageaccountname:
     description: the storage account name for bronze
     default: dlg2deveastusadb3600cyf3
